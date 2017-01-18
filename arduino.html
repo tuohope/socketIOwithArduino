@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ArduinoWithSocketIO</title>
+</head>
+<body>
+
+<p id="messages">LED IS CURRENTLY ON!</p>
+
+<button>BUTTON</button>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    var socket = io();
+
+    $("button").click(function () {
+        socket.emit('buttonPress');
+    })
+
+    socket.on('ledState', function (msg) {
+        //alert(msg);
+        $('#messages').text(msg);
+    })
+
+</script>
+</body>
+</html>
